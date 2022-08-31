@@ -1,0 +1,21 @@
+version: '3.7'
+
+networks:
+  default:
+    name: firefly
+    external: true
+
+services:
+
+  firefly:
+    image: "weaveworld/firefly:3.2.20220831-u20-g22-j17"  
+    environment:
+      - BROWSER=firefox@http://firefox:4444
+      #- BROWSER=chrome@http://chrome:4444      
+      #- BROWSER=edge@http://edge:4444
+    ports:
+      - 8000:8000
+    volumes:
+      - ../@:/app/@
+      - ../target:/target
+    command: firefly -o /target 

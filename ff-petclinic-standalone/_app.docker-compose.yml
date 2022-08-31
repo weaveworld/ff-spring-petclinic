@@ -1,0 +1,25 @@
+version: "3.8"
+
+networks:
+  default:
+    name: firefly
+    external: true
+    
+volumes:
+  maven-repository: 
+  app:
+
+services:
+
+  petclinic:
+    container_name: spring-petclinic
+    build:
+      context: .
+      dockerfile: app.spring-petclinic.Dockerfile    
+    image: spring-petclinic
+    ports:
+      - "8080:8080"
+    working_dir: /app
+    volumes:
+      - "app:/app"
+      - "maven-repository:/root/.m2/repository"
