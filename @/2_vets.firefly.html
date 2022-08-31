@@ -1,0 +1,84 @@
+<h2>Finding Vets</h2>
+<pre>page.open(URL);</pre> 
+
+<div>Vets can be found by clicking the `Veterinarians` button
+  <p><img src="?">
+  <pre>page.image().dash('Veterinarians');</pre>
+</div>
+
+<div>The `Veterinarians` page contains the list of the professionals
+  <pre>page.get('Veterinarians').click()</pre>
+  <p><img src="?">
+  <pre>page.image().dash('css=h2');</pre>
+  
+  <p>The page header is `Veterinarians`
+  <pre>page.get('css=h2').toString() ?? 'Veterinarians'</pre>
+  
+  <p>In the example the first name on the list is `James Carter`</p>
+  <pre>page.get('vets').get('css=td').toString() ?? 'James Carter'</pre>
+</div>
+
+<section>
+<h3>Paging</h3>
+
+<div>Pages can be shown by clicking the page number or a paging icon
+  <p><img src="?">
+  <pre>page.image().dash('css=div.container-fluid>div>div');</pre>
+  <p>At first, the first page can not be clicked but the second
+  <pre>page.get('1').css('text-decoration') ^?? ['underline']</pre>
+  <pre>page.get('2').css('text-decoration') ?? ['underline']</pre>
+</div>
+
+<h4>Forward</h4>
+<div>One can get the next page by clicking the <img src="?"> next page icon
+  <pre>page.get('css=.fa-step-forward').image().scale(0.7);</pre>
+  <p><img src="?">
+  <pre>page.image().dash('css=.fa-step-forward');</pre>
+  <pre>page.get('css=.fa-step-forward').click()</pre>  
+</div>
+
+<div>After a forward, the first page can be clicked but the second can not be clicked
+  <pre>page.get('1').css('text-decoration') ?? ['underline']</pre>
+  <pre>page.get('2').css('text-decoration') ^?? ['underline']</pre>
+</div>
+
+<h4>Backward</h4>
+
+<div>Clicking the <img src="?"> backward icon the next page appears
+  <pre>page.get('css=.fa-step-backward').image().scale(0.7);</pre>
+  <p><img src="?">
+  <pre>page.image().dash('css=.fa-step-backward');</pre>
+  <pre>page.get('css=.fa-step-backward').click()</pre>    
+  
+  <div>Now the first page can be clicked but the second
+    <pre>page.get('1').css('text-decoration') ^?? ['underline']</pre>
+    <pre>page.get('2').css('text-decoration') ?? ['underline']</pre>
+  </div>
+</div>
+
+<h4>First</h4>
+
+<div>Clicking the home icon the first page reappears
+  <p><img src="?">
+  <pre>page.image().dash('css=.fa-fast-backward');</pre>
+  <pre>page.get('css=.fa-fast-backward').click()</pre>
+  
+  <div>Again, the first page can not be clicked but the second    
+    <pre>page.get('1').css('text-decoration') ^?? ['underline']</pre>
+    <pre>page.get('2').css('text-decoration') ?? ['underline']</pre>
+  </div>
+</div>
+
+<h4>Last</h4>
+
+<div>The end icon jumps to the last page
+  <p><img src="?">
+  <pre>page.image().dash('css=.fa-fast-forward');</pre>
+  <pre>page.get('css=.fa-fast-forward').click()</pre>
+
+  <div>The first page can be clicked but the last
+    <pre>page.get('1').css('text-decoration') ?? ['underline']</pre>
+    <pre>page.get('2').css('text-decoration') ^?? ['underline']</pre>
+  </div>
+</div>
+</section>

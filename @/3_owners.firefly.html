@@ -1,0 +1,267 @@
+<h2>Owners and Pets</h2>
+
+<pre>page.open(URL); </pre> 
+
+<div>Owners can be found by clicking the `Find owners` navigation button
+  <p><img src="?">
+  <pre>page.image().dash('the=Find owners');</pre>
+</div>
+<div>The page provides a search form and adding new owners
+  <pre>page.get('the=Find owners').click()</pre>
+  <p><img src="?">
+  <pre>page.image().dash('css=h2');</pre>
+  <p>The page header is `Find Owners`
+  <pre>page.get("css=h2").toString() ?? "Find Owners"</pre>
+</div>
+
+<h3>Finding Owners</h3>
+
+<div>The list of the owners can be get by clicking the 'Find Owner' button
+  <p><img src="?">
+  <pre>page.image().dash('the=Find Owner');</pre>
+</div>
+
+<div>Clicking the button the first page of the owners appears
+	<pre>page.get('the=Find Owner').click()</pre>
+	<p><img src="?">
+	<pre>page.image();</pre>
+	<p>The page header is `Owners`
+	<pre>page.get("css=h2").toString() ?? "Owners"</pre>
+</div>
+
+<div>One can look for the owner typing the first some or all last name characters and clicking the Find Owner button
+  <p><img src="?">
+  <pre>page.open(URL+'/owners/find'); page.get('lastName').set('Dav'); page.image().dash('lastName');</pre>
+</div>
+
+<h4>More results</h4>
+
+<div>In case of more results a pageable list appears
+	<p><img src="?">
+	<pre>page.get('the=Find Owner').click(); page.image().dash('css=table>tbody>tr>td');</pre>
+	<p>The page header is `Owners`
+	<pre>page.get("css=h2").toString() ?? "Owners"</pre>
+	<p>There are two Davis in the list
+	<pre>list=page.list('css=table>tbody>tr');; list.length ?? 2</pre>
+	<p>In the example the first name is `Betty Davis`
+	<pre>list[0].get('css=td').toString() ?? 'Betty Davis'</pre>
+	<p>and the second name is `Harold Davis`
+	<pre>list[1].get('css=td').toString() ?? 'Harold Davis'</pre>
+</div>
+
+<div>Clicking on a name, detailed information appears about the owner, their pets and their visits 
+	<pre>page.get('Betty Davis').click()</pre>
+	<p>The owner name is the clicked one</p>
+	<p><img src="?">
+	<pre>page.image().dash('css=table>tbody>tr>td');</pre>
+	<p>Owner Information is shown</p>
+	<pre>page.get('css=h2').toString() ?? 'Owner Information'</pre>
+	<p>The example `Betty Davis` has a hamster, named Basil</p>
+	<pre>pet=page.list('css=dl>dd');; pet[2].toString() ?? 'hamster';; pet[0].toString() ?? 'Basil';;</pre>
+</div>
+
+<h4>No results</h4>
+
+<div>There can be no results for a searched name
+	<p><img src="?">
+	<pre>page.open(URL+'/owners/find'); page.get('lastName').set('Daviss'); page.image().dash('lastName');</pre>
+	
+	<p>In this case the `has not been found` message appears below to the search text
+	<p><img src="?">
+	<pre>page.get('the=Find Owner').click(); page.image().dash('the=has not been found');</pre>
+	
+	<p>The message is `has not been found`
+	<pre>page.get('css=span.help-inline>div>p').toString() ?? 'has not been found'</pre>
+</div>
+
+<h4>Exact result</h4>
+
+<div>A searched name can have a single exact result
+	<p><img src="?">
+	<pre>page.open(URL+'/owners/find'); page.get('lastName').set('Black'); page.image().dash('lastName');</pre>
+	
+	<p>In this case the Owner Information directly appears
+	<pre>page.get('the=Find Owner').click();</pre>
+	<p>Owner Information is shown</p>
+	<pre>page.get('css=h2').toString() ?? 'Owner Information'</pre>
+	<p><img src="?">
+	<pre>page.image().dash('the=Owner Information').dash('css=table>tbody>tr>td');</pre>
+	
+	<p>The owner's name contains the search text
+	<pre>page.get('css=table>tbody>tr>td').toString() ?? [ 'Black' ];</pre>
+</div>
+
+<h3>Managing Owners, their Pets and their Visits</h3>
+<pre>T=''+Java.type('java.lang.System').currentTimeMillis();</pre>
+
+<h4>New Owner</h4>
+
+<div>New owner can be added to the PetClinic data clicking the `Add Owner` button
+	<p><img src="?">
+	<pre>page.open(URL+'/owners/find').image().dash('the=Add Owner');</pre>
+</div>
+
+<div>The Owner form is shown, where basic data can be given
+  <p><img src="?">
+  <pre>page.get('the=Add Owner').click(); page.image();</pre>
+  <div>Fields must be filled, thus clicking the Add Owner button shows errors
+		<p><img src="?">
+		<pre>
+		page.get('the=Add Owner').click(); 
+		img=page.image();
+		msgs=page.list('css=.help-inline'); for(let e of msgs) img.dash(e);
+		img;
+		</pre>
+  </div>
+  <div>After giving the field values, using the Add Owner button one can add the new owner
+		<p><img src="?">
+		<pre>
+		page.open(URL+'/owners/new');
+		page.set('firstName','XYZ');
+		page.set('lastName', 'X'+T);
+		page.set('address',  '110 W. Liberty St.');
+		page.set('city',     'Madison');
+		page.set('telephone', T.substring(T.length-10));
+		page.image().dash('the=Add Owner');
+		</pre>
+	</div>
+
+<div>After a successful save the `Owner Information` page appears with the owner data
+	<pre>page.get('the=Add Owner').click()</pre>
+	<pre>page.get('css=h2').toString() ?? 'Owner Information'</pre>
+	<p><img src="?">
+	<pre>page.image();</pre>
+	<p>The page contains correct information</p>
+	<pre>table=page.get('css=table').table();;
+	table[0][1].toString() ?? 'XYZ X'+T;;
+	table[1][1].toString() ?? '110 W. Liberty St.';;
+	table[2][1].toString() ?? 'Madison';;
+	table[3][1].toString() ?? T.substring(T.length-10);;
+	</pre>
+</div>
+<div>The newly added owner appears at the end of the owner list
+	<p><img src="x">
+	<pre>page.open(URL+'/owners').get('css=.fa-fast-forward').click();
+	page.image().dash('css=table#owners>tbody>tr:last-child');
+	</pre>
+	<p>Data in the table row are correct</p>
+	<pre>table=page.get('css=table#owners').table(); table=table[table.size()-1];;
+	table[0] ?? 'XYZ X'+T;;
+	table[1] ?? '110 W. Liberty St.';;
+	table[2] ?? 'Madison';;
+	table[3] ?? T.substring(T.length-10);;
+	</pre>
+</div>
+
+<h4>Editing Owner Data</h4>
+
+<div>Owner's data is shown after an exact search or clicking the owner's name in the search result table
+<pre>page.open(URL+'/owners').get('css=.fa-fast-forward').click();</pre>
+<p><img src="?">
+<pre>page.image().dash('css=table#owners>tbody>tr:last-child>td');</pre>
+</div>
+
+<div>On the `Owner Information` page one can initiate to edit the data
+<pre>page.get('css=table#owners>tbody>tr:last-child>td>a').click();</pre>
+<p><img src="?">
+<pre>page.image().dash('the=Edit Owner');</pre>
+</div>
+
+<div>On the `Owner` form fields can be changed. Clicking the `Update Owner` button saves data.
+<pre>page.get('the=Edit Owner').click();</pre>
+<p><img src="?">
+<pre>page.set('address', '111 W. Liberty St.'); page.image().dash('address').dash('the=Update Owner');</pre>
+</div>
+
+<div>After the Update the `Owner` shows the changed data
+	<pre>page.get('the=Update Owner').click();</pre>
+	<p><img src="?">
+	<pre>page.image().dash('css=table>tbody>tr:nth-of-type(2)>td');</pre>
+</div>
+
+<h4>Add and Edit a Pet</h4>
+
+<div>On the `Owner Information` page one can initiate to add a new Pet
+  <p><img src="?">
+  <pre>page.open(URL+'/owners?lastName=X'+T).image().dash('the=Add New Pet')</pre>
+</div>
+
+<div>The `New Pet` form appears
+<p><img src="?">
+<pre>page.get('the=Add New Pet').click(); page.image();</pre>
+</div>
+
+<div>The fields must be filled, otherwise error messages are shown.
+<p><img src="?">
+<pre>page.get('the=Add Pet').click(); 
+img=page.image();
+for(let e of page.list('css=.help-inline')) img.dash(e);
+img;
+</pre>
+</div>
+
+<div>After given the fields clicking the `Add Pet` button saves the data
+	<pre>page.open(URL+'/owners?lastName=X'+T).get('the=Add New Pet').click()</pre>
+	<pre>
+	page.set('name',      'D1');
+	page.set('birthDate', '2022-01-01');
+	page.set('type',      'cat');
+	</pre>
+	<p><img src="?">
+	<pre>page.image().dash('the=Add Pet');</pre>
+</div>
+
+<div>After the save, data are shown on the `Owner Information` page under the `Pets and Visits` header
+	<pre>page.get('the=Add Pet').click()</pre>
+	<p><img src="?">
+	<pre>page.image().dash('the=Add Pet').dash('css=dl');</pre>
+	<p>Data are OK</p>
+	<pre>pet=page.list('css=dl>dd');; print(pet);;
+	pet[2].toString() ?? 'cat';; 
+	pet[1].toString() ?? '2022-01-01';; 
+	pet[0].toString() ?? 'D1';;</pre>
+</div>
+
+<div>Clicking the `Edit Pet`, data can be changed
+	<p><img src="?">
+	<pre>page.image().dash('the=Edit Pet')</pre>
+	<p>Now let's change the name and use the `Update Pet` button</p>
+	<pre>page.get('the=Edit Pet').click();
+	page.set('name','D2R')</pre>
+	
+	<p><img src="x">
+	<pre>page.image().dash('name').dash('the=Update Pet')</pre>
+</div>
+
+<div>After the save, the `Owner Information` page shows the changed value
+	<pre>page.get('the=Update Pet').click();</pre>
+	<p><img src="x">
+	<pre>page.image().dash('css=dd')</pre>
+</div>
+
+<div>The name of the added pet appears in the owner list
+	<pre>page.open(URL+'/owners').get('css=.fa-fast-forward').click();</pre>
+	<p><img src="x">
+	<pre>page.image().dash('css=table#owners>tbody>tr:last-child>td:last-child');</pre>
+</div>
+
+<div>Let's add a new pet
+	<pre>page.open(URL+'/owners?lastName=X'+T).get('the=Add New Pet').click();
+	page.get('name').set('R2R');
+	page.get('birthDate').set('2022-02-01');
+	page.get('type').set('dog');
+	<pre>page.image().dash('the=Add Pet');</pre>
+	<p>The new pet appears in the list<p>
+	<pre>page.get('the=Add Pet').click();
+	</pre>
+	<p><img src="x">
+	<pre>page.image().dash('css=dl')</pre>
+	<p>Now there are two pets</p>
+	<pre>pet=page.list('css=dl').size() ?? 2 </pre>
+</div>
+
+<div>The name of the added pet appears in the owner list
+	<pre>page.open(URL+'/owners').get('css=.fa-fast-forward').click();</pre>
+	<p><img src="x">
+	<pre>page.image().dash('css=table#owners>tbody>tr:last-child>td:last-child');</pre>
+</div>
