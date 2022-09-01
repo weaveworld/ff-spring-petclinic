@@ -2,13 +2,13 @@
 <pre>page.open(URL);</pre> 
 
 <div>Vets can be found by clicking the `Veterinarians` button
-  <p><img src="?">
+  <p><img data-ff-img src="?">
   <pre>page.image().dash('Veterinarians');</pre>
 </div>
 
 <div>The `Veterinarians` page contains the list of the professionals
   <pre>page.get('Veterinarians').click()</pre>
-  <p><img src="?">
+  <p><img data-ff-img src="?">
   <pre>page.image().dash('css=h2');</pre>
   
   <p>The page header is `Veterinarians`
@@ -22,7 +22,7 @@
 <h3>Paging</h3>
 
 <div>Pages can be shown by clicking the page number or a paging icon
-  <p><img src="?">
+  <p><img data-ff-img src="?">
   <pre>page.image().dash('css=div.container-fluid>div>div');</pre>
   <p>At first, the first page can not be clicked but the second
   <pre>page.get('1').css('text-decoration') ^?? ['underline']</pre>
@@ -30,9 +30,9 @@
 </div>
 
 <h4>Forward</h4>
-<div>One can get the next page by clicking the <img src="?"> next page icon
+<div>One can get the next page by clicking the <img data-ff-img src="?"> next page icon
   <pre>page.get('css=.fa-step-forward').image().scale(0.7);</pre>
-  <p><img src="?">
+  <p><img data-ff-img src="?">
   <pre>page.image().dash('css=.fa-step-forward');</pre>
   <pre>page.get('css=.fa-step-forward').click()</pre>  
 </div>
@@ -44,9 +44,9 @@
 
 <h4>Backward</h4>
 
-<div>Clicking the <img src="?"> backward icon the next page appears
+<div>Clicking the <img data-ff-img src="?"> backward icon the next page appears
   <pre>page.get('css=.fa-step-backward').image().scale(0.7);</pre>
-  <p><img src="?">
+  <p><img data-ff-img src="?">
   <pre>page.image().dash('css=.fa-step-backward');</pre>
   <pre>page.get('css=.fa-step-backward').click()</pre>    
   
@@ -59,7 +59,7 @@
 <h4>First</h4>
 
 <div>Clicking the home icon the first page reappears
-  <p><img src="?">
+  <p><img data-ff-img src="?">
   <pre>page.image().dash('css=.fa-fast-backward');</pre>
   <pre>page.get('css=.fa-fast-backward').click()</pre>
   
@@ -72,7 +72,7 @@
 <h4>Last</h4>
 
 <div>The end icon jumps to the last page
-  <p><img src="?">
+  <p><img data-ff-img src="?">
   <pre>page.image().dash('css=.fa-fast-forward');</pre>
   <pre>page.get('css=.fa-fast-forward').click()</pre>
 

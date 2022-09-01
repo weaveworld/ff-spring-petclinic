@@ -1,4 +1,4 @@
-# **Firefly** Testing Spring's PetClinic example application with docker
+# **Firefly** Testing Spring's *PetClinic* example application with Selenium's standalone docker containers
 
 ## Start
 
@@ -13,21 +13,29 @@ First, let's create a network for the test:
 
 ### Selenium 
 
-  - Let's start Selenium standalone containers:
+  - Let's start the Selenium standalone containers:
     - `docker-compose -f _sel.docker-compose.yml up -d`
   - Containers' desktops can be accessed 
     - Firefox container: http://127.0.0.1:7901/ 
-    - Chrome container: http://127.0.0.1:7902/ 
-    -   Edge container: http://127.0.0.1:7902/ 
+    - Chrome container:  http://127.0.0.1:7902/ 
+    - Edge container:    http://127.0.0.1:7903/ 
 
 ## Run Test
 
   - Start the test:
     - `docker-compose run firefly`
-  - The result is generated in the [target]() folder
+    - The result is generated in the [target](../target) folder
+    - The test browser can be set changing the [docker-compose.yml](docker-compose.yml) file's `BROWSER` environment variable
+
+  - Default values can be overriden
+    - `docker-compose run firefly firefly -o /target -=BROWSER=firefox@http://firefox:4444`
+    - `docker-compose run firefly firefly -o /target -=BROWSER=chrome@http://chrome:4444`
+    - `docker-compose run firefly firefly -o /target -=BROWSER=edge@http://edge:4444`
+
   - Selenium containers can be restarted:
     - `docker-compose -f _sel.docker-compose.yml restart`
-  - Used browser can be changed setting the [docker-compose.yml]() file's `BROWSER` variable
+  
+
 
 ## End
 

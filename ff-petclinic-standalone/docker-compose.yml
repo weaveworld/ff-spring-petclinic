@@ -8,7 +8,7 @@ networks:
 services:
 
   firefly:
-    image: "weaveworld/firefly:3.2.20220831-u20-g22-j17"  
+    image: "weaveworld/firefly:3.2.20220901-u20-g22-j17"  
     environment:
       - BROWSER=firefox@http://firefox:4444
       #- BROWSER=chrome@http://chrome:4444      

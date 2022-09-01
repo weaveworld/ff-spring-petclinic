@@ -4,18 +4,18 @@
   <pre>page.open(URL); </pre> 
   <p>The `Welcome` message appears</p>
   <pre>page.get("css=h2") ?? "Welcome"</pre>
-  <p><img src="?">
+  <p><img data-ff-img src="?">
   <pre>page.image().dash('css=h2')</pre>
 </div>
 
 <div>One can jump anytime to the home page by clicking the `Home` button
-  <p><img src="?">
+  <p><img data-ff-img src="?">
   <pre>page.open(URL+"/oups"); page.moveTo('Home'); page.image().dash('Home').crop(333)</pre>
 </div>
 
 <div>Clicking the Home button the Welcome page appears
   <pre>page.click('Home'); </pre> 
-  <p><img src="?">
+  <p><img data-ff-img src="?">
   <pre>page.image().dash('css=h2')</pre>
   <pre>page.get("css=h2") ?? "Welcome"</pre>
 </div>
