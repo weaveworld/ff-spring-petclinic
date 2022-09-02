@@ -23,14 +23,14 @@ First, let's create a network for the test:
 ## Run Test
 
   - Start the test:
-    - `docker-compose run firefly`
+    - `docker-compose run --rm firefly`
     - The result is generated in the [target](../target) folder
     - The test browser can be set changing the [docker-compose.yml](docker-compose.yml) file's `BROWSER` environment variable
 
   - Default values can be overriden
-    - `docker-compose run firefly firefly -o /target -=BROWSER=firefox@http://firefox:4444`
-    - `docker-compose run firefly firefly -o /target -=BROWSER=chrome@http://chrome:4444`
-    - `docker-compose run firefly firefly -o /target -=BROWSER=edge@http://edge:4444`
+    - `docker-compose run --rm firefly firefly -o /target -=BROWSER=firefox@http://firefox:4444`
+    - `docker-compose run --rm firefly firefly -o /target -=BROWSER=chrome@http://chrome:4444`
+    - `docker-compose run --rm firefly firefly -o /target -=BROWSER=edge@http://edge:4444`
 
   - Selenium containers can be restarted:
     - `docker-compose -f _sel.docker-compose.yml restart`
