@@ -1,5 +1,5 @@
 <h2>Finding Vets</h2>
-<pre>page.open(URL);</pre> 
+<pre>page.open(URL);</pre>
 
 <div>Vets can be found by clicking the `Veterinarians` button
   <p><img data-ff-img src="?">
@@ -10,10 +10,10 @@
   <pre>page.get('Veterinarians').click()</pre>
   <p><img data-ff-img src="?">
   <pre>page.image().dash('css=h2');</pre>
-  
+
   <p>The page header is `Veterinarians`
   <pre>page.get('css=h2').toString() ?? 'Veterinarians'</pre>
-  
+
   <p>In the example the first name on the list is `James Carter`</p>
   <pre>page.get('vets').get('css=td').toString() ?? 'James Carter'</pre>
 </div>
@@ -34,7 +34,7 @@
   <pre>page.get('css=.fa-step-forward').image().scale(0.7);</pre>
   <p><img data-ff-img src="?">
   <pre>page.image().dash('css=.fa-step-forward');</pre>
-  <pre>page.get('css=.fa-step-forward').click()</pre>  
+  <pre>page.get('css=.fa-step-forward').click()</pre>
 </div>
 
 <div>After a forward, the first page can be clicked but the second can not be clicked
@@ -48,8 +48,8 @@
   <pre>page.get('css=.fa-step-backward').image().scale(0.7);</pre>
   <p><img data-ff-img src="?">
   <pre>page.image().dash('css=.fa-step-backward');</pre>
-  <pre>page.get('css=.fa-step-backward').click()</pre>    
-  
+  <pre>page.get('css=.fa-step-backward').click()</pre>
+
   <div>Now the first page can be clicked but the second
     <pre>page.get('1').css('text-decoration') ^?? ['underline']</pre>
     <pre>page.get('2').css('text-decoration') ?? ['underline']</pre>
@@ -62,8 +62,8 @@
   <p><img data-ff-img src="?">
   <pre>page.image().dash('css=.fa-fast-backward');</pre>
   <pre>page.get('css=.fa-fast-backward').click()</pre>
-  
-  <div>Again, the first page can not be clicked but the second    
+
+  <div>Again, the first page can not be clicked but the second
     <pre>page.get('1').css('text-decoration') ^?? ['underline']</pre>
     <pre>page.get('2').css('text-decoration') ?? ['underline']</pre>
   </div>
