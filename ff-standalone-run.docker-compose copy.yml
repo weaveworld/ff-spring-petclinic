@@ -1,0 +1,57 @@
+version: '3.7'
+
+#
+# Testing with standalone selenium docker images
+#
+
+volumes:
+  maven-repository: 
+  application:
+
+services:
+
+  petclinic:
+    build:
+      context: _application
+      dockerfile: Dockerfile    
+    image: spring-petclinic
+    ports:
+      - "8080:8080"
+    working_dir: /app
+    volumes:
+      - "application:/app"
+      - "maven-repository:/root/.m2/repository"
+
+  firefox:
+    image: selenium/standalone-firefox:4.4.0-20220812
+    ports:
+      - 7901:7900 
+      - 4441:4444 
+    shm_size: 2gb
+    environment:
+      - VNC_NO_PASSWORD=1
+  chrome:
+    image: selenium/standalone-chrome:4.4.0-20220812
+    ports:
+      - 7902:7900 
+      - 4442:4444 
+    shm_size: 2gb
+    environment:
+      - VNC_NO_PASSWORD=1
+  edge:
+    image: selenium/standalone-edge:4.4.0-20220812
+    ports:
+      - 7903:7900 
+      - 4443:4444 
+    shm_size: 2gb
+    environment:
+      - VNC_NO_PASSWORD=1  
+
+  firefly:
+    image: "weaveworld/firefly:3.2.20220901-u20-g22-j17"  
+    ports:
+      - 7777:7777
+    command: [ "firefly", "-s", "/app", "-o", "/home/app/result", "-p", "7777", "BROWSER=chrome@http://chrome:4444", "APP_URL=http://host.docker.internal:8080" ]
+    volumes:
+      - ./:/app
+      - ./result:/home/app/result      

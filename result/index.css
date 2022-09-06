@@ -1,0 +1,41 @@
+*{ box-sizing: border-box; 
+}
+html{ background-color:#eee; margin: 3px 7px 10px 3px;
+}
+body{ font-size:90%; _font-family:Tahoma,Arial,Helvetica,sans-serif;   
+  margin:0; padding: 5px; border-radius: 7px;
+  background-color:#f8fdff; border-style:solid; border-width:thin; border-color:#F0F0F0;
+}
+
+body>section{ padding:0; 
+}
+section{ padding: 0.3em 0.7em; 
+}
+body>section>div.ff-list>section>div.ff-list>section{ padding:0; 
+}
+body>section>div.ff-list>section>div.ff-list>section>div.ff-list>section{ padding:0; 
+}
+
+h1{ font-size: 200%;
+}
+
+div.ff>div.ff-list{ 
+	padding: 2px 7px;	
+}
+p.ff-descr{ 
+	margin: 0 0 4px 0;
+}
+
+pre.ff-code{ 
+	font-weight:400; margin: 2px 0 7px 0; color:#888;  
+}          
+
+section.ff[data-state=]{ 
+  background-color:#aaa; }
+
+section.ff[data-state=success], section.ff[data-state=success], div.ff[data-state=success], pre.ff-code[data-state=success] { 
+	  background-color:#fff; }
+section.ff[data-state=error]>.ff-head,   div.ff[data-state=error]>p:first-child,   pre.ff-code[data-state=error] { 
+	background-color:#ff8c00; }
+section.ff[data-state=failure]>.ff-head, div.ff[data-state=failure]>p:first-child, pre.ff-code[data-state=failure] { 
+	background-color:#f00; }
