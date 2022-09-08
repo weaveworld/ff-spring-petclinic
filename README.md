@@ -8,7 +8,13 @@
 
 ## Testing with firefly-desktop 
 
-The easiest way to execute the test is to use the weaveworld/firefly-desktop with the [docker-compose.yml](docker-compose.yml) file.
+The easiest way to execute the test is to use the weaveworld/firefly-desktop docker image with the [docker-compose.yml](docker-compose.yml) file.
+
+- Use `git` to have the files:<br>
+  `git clone https://github.com/weaveworld/ff-spring-petclinic.git`<br>
+  `cd ff-spring-petclinic`
+- On Unix, allow to write result files:<br>
+  `chmod -R 777 result`
 
 ### Testing
 
