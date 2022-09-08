@@ -19,8 +19,10 @@ The easiest way to execute the test is to use the weaveworld/firefly-desktop wit
 `docker-compose up -d`
   - check the desktop:<br>
     http://localhost:7900/vnc_auto.html
+  - visit the application:<br>
+    http://localhost:8080
   - open the tests in the browser:<br>
-    http://localhost:4444
+    http://localhost:7777
   - Press `Enter` to **start** the test
   - Press `Escape` to **break** the execution
   - Make changes in the sources
@@ -58,14 +60,11 @@ Selenium's standalone docker images can also be used with the firefly (not the f
       - Chrome container:  http://localhost:7902/ 
       - Edge container:    http://localhost:7903/ 
   - Firefly can be controlled from its web page (Enter, Backspace, etc.):<br>
-    http://localhost:4444
+    http://localhost:7777
   - Browser links:
     - `BROWSER=firefox@http://firefox:4444`
-      - or `BROWSER=firefox@http://host.docker.internal:4441`
     - `BROWSER=chrome@http://chrome:4444`
-      - or `BROWSER=chrome@http://host.docker.internal:4442`
     - `BROWSER=edge@http://edge:4444`
-      - or `BROWSER=edge@http://host.docker.internal:4443`
 
   
 ### Running the tests 
@@ -75,4 +74,4 @@ Tests can be run without the `-i` switch.
 - To build the PetClinic application and start with the browsers and Firefly, use the following:<br>
 `docker-compose -f ff-standalone.docker-compose up -d petclinic firefox chrome edge`
 - To run the tests:<br>
-  `docker-compose -f ff-standalone-run.docker-compose copy.yml run --rm --service-ports firefly firefly -o /home/app/result -p 7777 BROWSER=chrome@http://chrome:4444 APP_URL=http://host.docker.internal:8080` 
+  `docker-compose -f ff-standalone-run.docker-compose copy.yml run --rm --service-ports firefly firefly -o /home/app/result -p 7777 BROWSER=chrome@http://chrome:4444 APP_URL=http://petclinic:8080` 
