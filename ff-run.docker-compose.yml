@@ -24,7 +24,7 @@ services:
       - 7900:7900
       - 4444:4444
       - 7777:7777
-    command: [ "firefly", "-s", "/app", "-o", "/home/app/result", "-p", "7777", "BROWSER=chrome:4444", "APP_URL=http://host.docker.internal:8080" ]
+    command: [ "firefly", "-s", "/app", "-o", "/home/app/result", "-p", "7777", "BROWSER=chrome:4444", "APP_URL=http://petclinic:8080" ]
     volumes:
       - ./:/app
       - ./result:/home/app/result

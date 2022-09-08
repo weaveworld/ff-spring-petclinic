@@ -51,7 +51,7 @@ services:
     image: "weaveworld/firefly:3.2.20220901-u20-g22-j17"  
     ports:
       - 7777:7777
-    command: [ "firefly", "-s", "/app", "-o", "/home/app/result", "-i", "-p", "7777", "BROWSER=chrome@http://chrome:4444", "APP_URL=http://host.docker.internal:8080" ]
+    command: [ "firefly", "-s", "/app", "-o", "/home/app/result", "-i", "-p", "7777", "BROWSER=chrome@http://chrome:4444", "APP_URL=http://petclinic:8080" ]
     volumes:
       - ./:/app
       - ./result:/home/app/result      
