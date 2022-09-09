@@ -35,7 +35,7 @@ section.ff[data-state=]{
 
 section.ff[data-state=success], section.ff[data-state=success], div.ff[data-state=success], pre.ff-code[data-state=success] { 
 	  background-color:#fff; }
-section.ff[data-state=error]>.ff-head,   div.ff[data-state=error]>p:first-child,   pre.ff-code[data-state=error] { 
+section.ff[data-state=warning]>.ff-head,   div.ff[data-state=warning]>p:first-child,   pre.ff-code[data-state=warning] { 
 	background-color:#ff8c00; }
-section.ff[data-state=failure]>.ff-head, div.ff[data-state=failure]>p:first-child, pre.ff-code[data-state=failure] { 
+section.ff[data-state=error]>.ff-head, div.ff[data-state=error]>p:first-child, pre.ff-code[data-state=error] { 
 	background-color:#f00; }
