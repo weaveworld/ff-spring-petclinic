@@ -80,4 +80,21 @@ Tests can be run without the `-i` switch.
 - To build the PetClinic application and start with the browsers and Firefly, use the following:<br>
 `docker-compose -f ff-standalone.docker-compose up -d petclinic firefox chrome edge`
 - To run the tests:<br>
-  `docker-compose -f ff-standalone-run.docker-compose copy.yml run --rm --service-ports firefly firefly -o /home/app/result -p 7777 BROWSER=chrome@http://chrome:4444 APP_URL=http://petclinic:8080` 
+  `docker-compose -f ff-standalone-run.docker-compose.yml run --rm --service-ports firefly firefly -o /home/app/result -p 7777 BROWSER=chrome@http://chrome:4444 APP_URL=http://petclinic:8080` 
+
+## Testing with weaveworld/selenium docker image 
+
+The [weaveworld/selenium](https://github.com/weaveworld/ubuntu-desktop#selenium-weaveworldselenium) docker image contains the Firefox, Chrome and Edge browsers, with the Selenium drivers and the Selenium Server, that are accessible using the RemoteWebDriver.
+
+### Testing
+
+- To build the PetClinic application and start with the browsers and with Firefly, use the following:<br>
+`docker-compose -f ff-standalone.docker-compose up -d`
+  - Desktop access: <br>
+    http://localhost:7900
+  - Firefly can be controlled from its web page (Enter, Backspace, etc.):<br>
+    http://localhost:7777
+  - Browser links:
+    - `BROWSER=firefox@http://selenium:4444`
+    - `BROWSER=chrome@http://chrome:4444`
+    - `BROWSER=edge@http://selenium:4444`
