@@ -36,6 +36,9 @@ The easiest way to execute the test is to use the weaveworld/firefly-desktop doc
       - `Enter`to *restarts* the tests
     - At the end of the execution, the results are written out;<br>
     see ([result](result))
+      - Using [jq](https://stedolan.github.io/jq/), a summary can be get:<br>
+        `tail +2 result/index.firefly.js | jq '.|{state,success,warning,er
+ror,t}'`  
 - Finally, the application and the firefly-desktop can be stopped<br>
 `docker-compose down`
 
