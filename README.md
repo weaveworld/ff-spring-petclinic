@@ -13,8 +13,6 @@ The easiest way to execute the test is to use the weaveworld/firefly-desktop doc
 - Use `git` to have the files:<br>
   `git clone https://github.com/weaveworld/ff-spring-petclinic.git`<br>
   `cd ff-spring-petclinic`
-- On Unix, allow to write result files:<br>
-  `chmod -R 777 result`
 
 ### Testing
 
@@ -37,8 +35,7 @@ The easiest way to execute the test is to use the weaveworld/firefly-desktop doc
     - At the end of the execution, the results are written out;<br>
     see ([result](result))
       - Using [jq](https://stedolan.github.io/jq/), a summary can be get:<br>
-        `tail +2 result/index.firefly.js | jq '.|{state,success,warning,er
-ror,t}'`  
+        `tail +2 result/index.firefly.js | jq '.|{state,success,warning,error,t}'`  
 - Finally, the application and the firefly-desktop can be stopped<br>
 `docker-compose down`
 
