@@ -29,37 +29,44 @@ The easiest way to execute the test is to use the weaveworld/firefly-desktop doc
     http://localhost:8080
   - open the tests in the browser:<br>
     http://localhost:7777
-  - Press `Enter` to **start** the test
-  - Press `Escape` to **break** the execution
-  - Make changes in the sources
-  - Press `Backspace` to **reload** the sources
-    - `Enter` *restarts* the tests
-  - At the end of the execution, the results are written out;<br>
+    - Press `Enter` to **start** the test
+    - Press `Escape` to **break** the execution
+    - Make changes in the sources
+    - Press `Backspace` to **reload** the sources
+      - `Enter`to *restarts* the tests
+    - At the end of the execution, the results are written out;<br>
     see ([result](result))
 - Finally, the application and the firefly-desktop can be stopped<br>
-`docker-compose down`    
+`docker-compose down`
+
+- Browser links:
+  - `BROWSER=firefox@http://localhost:4444`
+  - `BROWSER=chrome@http://localhost:4444`
+  - `BROWSER=edge@http://localhost:4444`
 
 ### Running the tests 
 
 Without the `-i` ('interactive') switch, Firefly runs the tests and stops after them.
 
 - To build and start the PetClinic application, use the following:<br>
-`docker-compose -f ff-run.docker-compose.yml up -d petclinic`
+  `docker-compose up -d petclinic`
 
 - To start the tests, have<br>
-`docker-compose -f ff-run.docker-compose.yml run --rm --service-ports firefly-desktop`
-  - After the Desktop starts, during the run, the Desktop can be watched:<br>
+  `docker-compose run --rm --service-ports firefly-desktop BROWSER=chrome@http://localhost:4444`
+  - After the Desktop start, during the run, the Desktop can be watched:<br>
     http://localhost:7900/vnc_auto.html
   - The execution of the Firefly tests can be watched:<br>
     http://localhost:4444
+- To stop use<br>
+  `docker-compose down`
 
 ## Testing with Selenium's standalone images 
 
-Selenium's standalone docker images can also be used with the firefly (not the firefly-desktop) image.
+[Selenium's standalone docker images](https://github.com/SeleniumHQ/docker-selenium#standalone) can also be used with the weaveworld/firefly (not the weaveworld/firefly-desktop) image.
 
 ### Testing
 
-- To build the PetClinic application and start with the browsers and with Firefly, use the following:<br>
+- To build the PetClinic application and start with the browsers and Firefly, use the following:<br>
 `docker-compose -f ff-standalone.docker-compose up -d`
   - Desktop access:
       - Firefox container: http://localhost:7901/ 
@@ -71,16 +78,20 @@ Selenium's standalone docker images can also be used with the firefly (not the f
     - `BROWSER=firefox@http://firefox:4444`
     - `BROWSER=chrome@http://chrome:4444`
     - `BROWSER=edge@http://edge:4444`
-
   
 ### Running the tests 
 
-Tests can be run without the `-i` switch.
+- To build the PetClinic application and start with the browsers, use the following:<br>
+  `docker-compose -f ff-standalone.docker-compose up -d petclinic firefox chrome edge`
 
-- To build the PetClinic application and start with the browsers and Firefly, use the following:<br>
-`docker-compose -f ff-standalone.docker-compose up -d petclinic firefox chrome edge`
-- To run the tests:<br>
-  `docker-compose -f ff-standalone-run.docker-compose.yml run --rm --service-ports firefly firefly -o /home/app/result -p 7777 BROWSER=chrome@http://chrome:4444 APP_URL=http://petclinic:8080` 
+- To start the tests, have<br>
+  `docker-compose -f ff-standalone.docker-compose run --rm --service-ports firefly-desktop BROWSER=chrome@http://localhost:4444`
+  - During the run, the Desktop can be watched:<br>
+    http://localhost:7900/vnc_auto.html
+  - The execution of the Firefly tests can be watched:<br>
+    http://localhost:4444
+- To stop use<br>
+  `docker-compose down`
 
 ## Testing with weaveworld/selenium docker image 
 
@@ -89,7 +100,7 @@ The [weaveworld/selenium](https://github.com/weaveworld/ubuntu-desktop#selenium-
 ### Testing
 
 - To build the PetClinic application and start with the browsers and with Firefly, use the following:<br>
-`docker-compose -f ff-standalone.docker-compose up -d`
+`docker-compose -f ff-selenium.docker-compose up -d`
   - Desktop access: <br>
     http://localhost:7900
   - Firefly can be controlled from its web page (Enter, Backspace, etc.):<br>
@@ -98,3 +109,17 @@ The [weaveworld/selenium](https://github.com/weaveworld/ubuntu-desktop#selenium-
     - `BROWSER=firefox@http://selenium:4444`
     - `BROWSER=chrome@http://chrome:4444`
     - `BROWSER=edge@http://selenium:4444`
+
+### Running the tests 
+
+- To build the PetClinic application and start with the browsers, use the following:<br>
+  `docker-compose -f ff-selenium.docker-compose up -d petclinic selenium`
+
+- To start the tests have<br>
+  `docker-compose -f ff-selenium.docker-compose run --rm --service-ports firefly-desktop BROWSER=chrome@http://localhost:4444`
+  - During the run, the Desktop can be watched:<br>
+    http://localhost:7900/vnc_auto.html
+  - The execution of the Firefly tests can be watched:<br>
+    http://localhost:4444
+- To stop the environment use:<br>
+  `docker-compose down`

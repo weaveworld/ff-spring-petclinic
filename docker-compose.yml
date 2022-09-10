@@ -24,7 +24,8 @@ services:
       - 7900:7900
       - 4444:4444
       - 7777:7777
-    command: [ "firefly", "-s", "/app", "-o", "/home/app/result", "-i", "-p", "7777", "BROWSER=chrome:4444", "APP_URL=http://petclinic:8080" ]
+    entrypoint: [ "firefly", "APP_URL=http://petclinic:8080", "BROWSER=chrome:4444", "-p", "7777", "-s", "/app", "-o", "/home/app/result", ]
+    command: [ "-i", ]
     volumes:
       - ./:/app
       - ./result:/home/app/result

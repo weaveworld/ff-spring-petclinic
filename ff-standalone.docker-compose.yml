@@ -51,7 +51,8 @@ services:
     image: "weaveworld/firefly"  
     ports:
       - 7777:7777
-    command: [ "firefly", "-s", "/app", "-o", "/home/app/result", "-i", "-p", "7777", "BROWSER=chrome@http://chrome:4444", "APP_URL=http://petclinic:8080" ]
+    entrypoint: [ "firefly", "APP_URL=http://petclinic:8080", "BROWSER=chrome:4444", "-p", "7777" ]
+    command: [ "-s", "/app", "-o", "/home/app/result", "-i", ]
     volumes:
       - ./:/app
       - ./result:/home/app/result      
