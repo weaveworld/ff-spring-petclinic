@@ -48,7 +48,7 @@ services:
       - VNC_NO_PASSWORD=1  
 
   firefly:
-    image: "weaveworld/firefly:3.2.20220901-u20-g22-j17"  
+    image: "weaveworld/firefly"  
     ports:
       - 7777:7777
     command: [ "firefly", "-s", "/app", "-o", "/home/app/result", "-i", "-p", "7777", "BROWSER=chrome@http://chrome:4444", "APP_URL=http://petclinic:8080" ]
