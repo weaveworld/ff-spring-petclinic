@@ -57,11 +57,11 @@ Without the `-i` ('interactive') switch, Firefly runs the tests and stops after 
 
 - To start the tests, have<br>
   `docker-compose run --rm --service-ports firefly-desktop BROWSER=chrome@http://localhost:4444`
-  - After the Desktop start, during the run, the Desktop can be watched:<br>
+  - During the run the Desktop can be watched:<br>
     http://localhost:7900/vnc_auto.html
-  - The execution of the Firefly tests can be watched:<br>
-    http://localhost:4444
-- To stop use<br>
+  - Firefly test execution can be watched:<br>
+    http://localhost:7777
+- To stop the application use<br>
   `docker-compose down`
 
 ## Testing with Selenium's standalone images
@@ -93,7 +93,7 @@ Without the `-i` ('interactive') switch, Firefly runs the tests and stops after 
   - During the run, the Desktop can be watched:<br>
     http://localhost:7900/vnc_auto.html
   - The execution of the Firefly tests can be watched:<br>
-    http://localhost:4444
+    http://localhost:7777
 - To stop use<br>
   `docker-compose down`
 
@@ -111,7 +111,7 @@ The [weaveworld/selenium](https://github.com/weaveworld/ubuntu-desktop#selenium-
     http://localhost:7777
   - Browser links:
     - `BROWSER=firefox@http://selenium:4444`
-    - `BROWSER=chrome@http://chrome:4444`
+    - `BROWSER=chrome@http://selenium:4444`
     - `BROWSER=edge@http://selenium:4444`
 
 ### Running the tests
@@ -124,6 +124,6 @@ The [weaveworld/selenium](https://github.com/weaveworld/ubuntu-desktop#selenium-
   - During the run, the Desktop can be watched:<br>
     http://localhost:7900/vnc_auto.html
   - The execution of the Firefly tests can be watched:<br>
-    http://localhost:4444
+    http://localhost:7777
 - To stop the environment use:<br>
   `docker-compose down`
