@@ -6,7 +6,11 @@
 
 - Example test results are in the [result](result) folder.
 
-## Testing with firefly-desktop 
+[<img src="_resource/ff-petclinic.gif" alt="Click to see the video" width="500"></img>](https://youtu.be/p40boQzXK64)
+
+See the [*video*](https://youtu.be/p40boQzXK64) about the steps.
+
+## Testing with firefly-desktop
 
 The easiest way to execute the test is to use the weaveworld/firefly-desktop docker image with the [docker-compose.yml](docker-compose.yml) file.
 
@@ -35,7 +39,7 @@ The easiest way to execute the test is to use the weaveworld/firefly-desktop doc
     - At the end of the execution, the results are written out;<br>
     see ([result](result))
       - Using [jq](https://stedolan.github.io/jq/), a summary can be get:<br>
-        `tail +2 result/index.firefly.js | jq '.|{state,success,warning,error,t}'`  
+        `tail +2 result/index.firefly.js | jq '.|{state,success,warning,error,t}'`
 - Finally, the application and the firefly-desktop can be stopped<br>
 `docker-compose down`
 
@@ -44,7 +48,7 @@ The easiest way to execute the test is to use the weaveworld/firefly-desktop doc
   - `BROWSER=chrome@http://localhost:4444`
   - `BROWSER=edge@http://localhost:4444`
 
-### Running the tests 
+### Running the tests
 
 Without the `-i` ('interactive') switch, Firefly runs the tests and stops after them.
 
@@ -60,7 +64,7 @@ Without the `-i` ('interactive') switch, Firefly runs the tests and stops after 
 - To stop use<br>
   `docker-compose down`
 
-## Testing with Selenium's standalone images 
+## Testing with Selenium's standalone images
 
 [Selenium's standalone docker images](https://github.com/SeleniumHQ/docker-selenium#standalone) can also be used with the weaveworld/firefly (not the weaveworld/firefly-desktop) image.
 
@@ -69,17 +73,17 @@ Without the `-i` ('interactive') switch, Firefly runs the tests and stops after 
 - To build the PetClinic application and start with the browsers and Firefly, use the following:<br>
 `docker-compose -f ff-standalone.docker-compose up -d`
   - Desktop access:
-      - Firefox container: http://localhost:7901/ 
-      - Chrome container:  http://localhost:7902/ 
-      - Edge container:    http://localhost:7903/ 
+      - Firefox container: http://localhost:7901/
+      - Chrome container:  http://localhost:7902/
+      - Edge container:    http://localhost:7903/
   - Firefly can be controlled from its web page (Enter, Backspace, etc.):<br>
     http://localhost:7777
   - Browser links:
     - `BROWSER=firefox@http://firefox:4444`
     - `BROWSER=chrome@http://chrome:4444`
     - `BROWSER=edge@http://edge:4444`
-  
-### Running the tests 
+
+### Running the tests
 
 - To build the PetClinic application and start with the browsers, use the following:<br>
   `docker-compose -f ff-standalone.docker-compose up -d petclinic firefox chrome edge`
@@ -93,7 +97,7 @@ Without the `-i` ('interactive') switch, Firefly runs the tests and stops after 
 - To stop use<br>
   `docker-compose down`
 
-## Testing with weaveworld/selenium docker image 
+## Testing with weaveworld/selenium docker image
 
 The [weaveworld/selenium](https://github.com/weaveworld/ubuntu-desktop#selenium-weaveworldselenium) docker image contains the Firefox, Chrome and Edge browsers, with the Selenium drivers and the Selenium Server, that are accessible using the RemoteWebDriver.
 
@@ -110,7 +114,7 @@ The [weaveworld/selenium](https://github.com/weaveworld/ubuntu-desktop#selenium-
     - `BROWSER=chrome@http://chrome:4444`
     - `BROWSER=edge@http://selenium:4444`
 
-### Running the tests 
+### Running the tests
 
 - To build the PetClinic application and start with the browsers, use the following:<br>
   `docker-compose -f ff-selenium.docker-compose up -d petclinic selenium`
